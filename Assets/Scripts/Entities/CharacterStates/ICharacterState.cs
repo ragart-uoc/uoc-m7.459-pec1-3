@@ -1,0 +1,18 @@
+namespace PEC1.Entities.CharacterStates
+{
+    /// <summary>
+    /// Interface <c>ICharacterState</c> is the interface for the character states.
+    /// </summary>
+    public interface ICharacterState
+    {
+        /// <summary>
+        /// Method <c>StartState</c> invokes the state Start method.
+        /// </summary>
+        void StartState();
+        
+        /// <summary>
+        /// Method <c>UpdateState</c> invokes the state Update method.
+        /// </summary>
+        void UpdateState();
+    }
+}

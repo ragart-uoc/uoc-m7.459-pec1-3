@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Runner
   - Elder
+  - RestArea
   layers:
   - Default
   - TransparentFX
