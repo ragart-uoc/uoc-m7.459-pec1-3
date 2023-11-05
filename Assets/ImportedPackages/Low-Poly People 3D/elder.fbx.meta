@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 7f591e6c751b47a409f6908df0c35f0b
+guid: de6de2735c29c98448639555ae70e363
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pants
+    second: {fileID: 2100000, guid: 4c074e0896e730e49a60af2b9587598f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shirt
+    second: {fileID: 2100000, guid: b5613eee342e14848946e1b426102538, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shoes
+    second: {fileID: 2100000, guid: ac0aa2742298dd944814ddd2d1d2cb86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin
+    second: {fileID: 2100000, guid: 23eac7cd963d59d4eb6b8be48add66d1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -33,11 +53,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Runner_Run
+      name: Elder_TPose
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 77
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
