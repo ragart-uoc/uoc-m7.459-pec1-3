@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using PEC1.Entities;
 
 namespace PEC1.Managers
@@ -26,6 +28,9 @@ namespace PEC1.Managers
         /// <value>Property <c>runnerMaxSpeed</c> represents the maximum speed of the runners.</value>
         public float runnerMaxSpeed = 5.0f;
         
+        /// <value>Property <c>addRunnerButton</c> represents the add runner button.</value>
+        public Button addRunnerButton;
+        
         /// <value>Property <c>elderPrefab</c> represents the elder prefab.</value>
         public GameObject elderPrefab;
 
@@ -46,6 +51,9 @@ namespace PEC1.Managers
         
         /// <value>Property <c>elderMaxSpeed</c> represents the maximum speed of the elders.</value>
         public float elderMaxSpeed = 2f;
+        
+        /// <value>Property <c>addElderButton</c> represents the add elder button.</value>
+        public Button addElderButton;
 
         /// <value>Property <c>runnerWaypointContainer</c> represents the runner waypoints.</value>
         public GameObject runnerWaypointContainer;
@@ -173,6 +181,44 @@ namespace PEC1.Managers
             return direction
                 ? (index + 1) % listLength
                 : (index - 1 + listLength) % listLength;
+        }
+
+        /// <summary>
+        /// Method <c>RestartGame</c> restarts the game.
+        /// </summary>
+        public void RestartGame()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        
+        /// <summary>
+        /// Method <c>AddRunner</c> adds a runner.
+        /// </summary>
+        public void AddRunner()
+        {
+            runners++;
+            if (runners > maxRunners)
+            {
+                runners = maxRunners;
+                addRunnerButton.interactable = false;
+                return;
+            }
+            SpawnRunner();
+        }
+
+        /// <summary>
+        /// Method <c>AddElder</c> adds an elder.
+        /// </summary>
+        public void AddElder()
+        {
+            elders++;
+            if (elders > maxElders)
+            {
+                elders = maxElders;
+                addElderButton.interactable = false;
+                return;
+            }
+            SpawnElder();
         }
     }
 }
