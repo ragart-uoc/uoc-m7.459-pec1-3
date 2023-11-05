@@ -566,6 +566,7 @@ MonoBehaviour:
   wanderRadius: 10
   restingTime: 5
   patrolDirection: 0
+  startingWayPoint: 0
   nextWayPoint: 0
 --- !u!95 &5735743299280401485
 Animator:

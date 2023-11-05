@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using PEC1.Managers;
 
 namespace PEC1.Entities.CharacterTypes
 {
@@ -29,13 +28,6 @@ namespace PEC1.Entities.CharacterTypes
         /// </summary>
         public void StartType()
         {
-            // Randomize the agent speed
-            _character.agent.speed = Random.Range(GameManager.Instance.runnerMinSpeed, GameManager.Instance.runnerMaxSpeed);
-            _character.agent.acceleration = _character.agent.speed * 2f;
-            
-            // Randomize the agent direction
-            _character.patrolDirection = Random.value > 0.5f;
-
             // Reset the animator
             _character.animator.Rebind();
             _character.animator.Update(0f);

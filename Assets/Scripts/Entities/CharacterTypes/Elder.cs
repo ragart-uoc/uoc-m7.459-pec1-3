@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using PEC1.Managers;
 
 namespace PEC1.Entities.CharacterTypes
 {
@@ -32,10 +31,6 @@ namespace PEC1.Entities.CharacterTypes
         /// </summary>
         public void StartType()
         {
-            // Set the agent speed
-            _character.agent.speed = Random.Range(GameManager.Instance.elderMinSpeed, GameManager.Instance.elderMaxSpeed);
-            _character.agent.acceleration = _character.agent.speed * 2f;
-
             // Reset the animator
             _character.animator.Rebind();
             _character.animator.Update(0f);

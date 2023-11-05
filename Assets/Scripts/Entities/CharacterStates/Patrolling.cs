@@ -22,6 +22,8 @@ namespace PEC1.Entities.CharacterStates
         public void StartState()
         {
             _character.agent.isStopped = false;
+            _character.SetNextWayPoint();
+            _character.agent.destination = GameManager.Instance.runnerWaypoints[_character.nextWayPoint].position;
         }
 
         /// <summary>
@@ -29,13 +31,10 @@ namespace PEC1.Entities.CharacterStates
         /// </summary>
         public void UpdateState()
         {
-            if (!(_character.agent.remainingDistance <= _character.agent.stoppingDistance))
+            if (_character.agent.pathPending || _character.agent.remainingDistance > _character.agent.stoppingDistance)
                 return;
             // Define the next way point depending on the direction
-            _character.nextWayPoint = _character.patrolDirection
-                ? (_character.nextWayPoint + 1) % GameManager.Instance.runnerWaypoints.Length
-                : (_character.nextWayPoint - 1 + GameManager.Instance.runnerWaypoints.Length) %
-                  GameManager.Instance.runnerWaypoints.Length;
+            _character.SetNextWayPoint();
             _character.agent.destination = GameManager.Instance.runnerWaypoints[_character.nextWayPoint].position;
         }
     }

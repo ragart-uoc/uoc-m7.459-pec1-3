@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using PEC1.Entities.CharacterTypes;
 using PEC1.Entities.CharacterStates;
+using PEC1.Managers;
 
 namespace PEC1.Entities
 {
@@ -64,6 +65,9 @@ namespace PEC1.Entities
         
         #region Navigation
         
+            /// <value>Property <c>startingWayPoint</c> represents the character starting way point.</value>
+            public int startingWayPoint;
+        
             /// <value>Property <c>_nextWayPoint</c> represents the character next way point.</value>
             public int nextWayPoint;
             
@@ -118,6 +122,17 @@ namespace PEC1.Entities
         {
             // Invoke the current type Update method
             CurrentType.UpdateType();
+        }
+        
+        /// <summary>
+        /// Method <c>Get</c> sets the next way point.
+        /// </summary>
+        public void SetNextWayPoint()
+        {
+            nextWayPoint = GameManager.Instance.GetNextItemInList(
+                nextWayPoint,
+                GameManager.Instance.runnerWaypoints.Length,
+                patrolDirection);
         }
         
         #region Collisions
