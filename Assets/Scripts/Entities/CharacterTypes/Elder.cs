@@ -36,8 +36,7 @@ namespace PEC1.Entities.CharacterTypes
             _character.animator.Update(0f);
             
             // Start the state
-            _character.CurrentState = _character.CharacterStates[CharacterProperties.States.Wandering];
-            _character.CurrentState.StartState();
+            Wander();
         }
 
         /// <summary>

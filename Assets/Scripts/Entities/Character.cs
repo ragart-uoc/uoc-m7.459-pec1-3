@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using PathCreation;
 using PEC1.Entities.CharacterTypes;
 using PEC1.Entities.CharacterStates;
 using PEC1.Managers;
@@ -70,6 +71,12 @@ namespace PEC1.Entities
         
             /// <value>Property <c>_nextWayPoint</c> represents the character next way point.</value>
             public int nextWayPoint;
+
+            /// <value>Property <c>pathCreator</c> represents the character path creator.</value>
+            public PathCreator pathCreator;
+            
+            /// <value>Property <c>endOfPathInstruction</c> represents the character end of path instruction.</value>
+            public EndOfPathInstruction endOfPathInstruction;
             
         #endregion
             
@@ -88,11 +95,13 @@ namespace PEC1.Entities
             // Get the character types
             _characterTypes.Add(CharacterProperties.Types.Elder, new Elder(this));
             _characterTypes.Add(CharacterProperties.Types.Runner, new Runner(this));
+            _characterTypes.Add(CharacterProperties.Types.PathRunner, new PathRunner(this));
             
             // Get the character states
             CharacterStates.Add(CharacterProperties.States.Idle, new Idle(this));
             CharacterStates.Add(CharacterProperties.States.Resting, new Resting(this));
             CharacterStates.Add(CharacterProperties.States.Patrolling, new Patrolling(this));
+            CharacterStates.Add(CharacterProperties.States.PathPatrolling, new PathPatrolling(this));
             CharacterStates.Add(CharacterProperties.States.Wandering, new Wandering(this));
             
             // Set the current type and state
@@ -110,6 +119,10 @@ namespace PEC1.Entities
                 animator = GetComponent<Animator>();
             if (agent == null)
                 agent = GetComponent<NavMeshAgent>();
+            
+            // Find the path creator
+            if (pathCreator == null)
+                pathCreator = FindObjectOfType<PathCreator>();
             
             // Invoke the current type Start method
             CurrentType.StartType();

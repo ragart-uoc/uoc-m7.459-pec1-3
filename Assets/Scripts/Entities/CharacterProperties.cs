@@ -9,7 +9,8 @@ namespace PEC1.Entities
         public enum Types
         {
             Elder,
-            Runner
+            Runner,
+            PathRunner
         }
         
         /// <value>Property <c>States</c> represents the states of characters.</value>
@@ -18,6 +19,7 @@ namespace PEC1.Entities
             Idle,
             Resting,
             Patrolling,
+            PathPatrolling,
             Wandering
         }
     }

@@ -4,9 +4,9 @@ using UnityEngine;
 namespace PEC1.Entities.CharacterTypes
 {
     /// <summary>
-    /// Class <c>Runner</c> is the class for the Runner character type.
+    /// Class <c>PathRunner</c> is the class for the PathRunner character type.
     /// </summary>
-    public class Runner : ICharacterType
+    public class PathRunner : ICharacterType
     {
         /// <value>Property <c>Character</c> represents the character.</value>
         private readonly Character _character;
@@ -15,10 +15,10 @@ namespace PEC1.Entities.CharacterTypes
         public List<string> TargetTags { get; set; }
 
         /// <summary>
-        /// Class constructor <c>Runner</c> initializes the class.
+        /// Class constructor <c>PathRunner</c> initializes the class.
         /// </summary>
         /// <param name="character">The character.</param>
-        public Runner(Character character)
+        public PathRunner(Character character)
         {
             _character = character;
         }
@@ -41,9 +41,6 @@ namespace PEC1.Entities.CharacterTypes
         /// </summary>
         public void UpdateType()
         {
-            // Pass the velocity to the animator
-            _character.animator.SetFloat(_character.AnimatorSpeed, _character.agent.velocity.magnitude);
-            
             // Update the state
             _character.CurrentState.UpdateState();
         }
@@ -69,9 +66,9 @@ namespace PEC1.Entities.CharacterTypes
         /// </summary>
         public void Patrol()
         {
-            if (_character.CurrentState == _character.CharacterStates[CharacterProperties.States.Patrolling])
+            if (_character.CurrentState == _character.CharacterStates[CharacterProperties.States.PathPatrolling])
                 return;
-            _character.CurrentState = _character.CharacterStates[CharacterProperties.States.Patrolling];
+            _character.CurrentState = _character.CharacterStates[CharacterProperties.States.PathPatrolling];
             _character.CurrentState.StartState();
         }
 
