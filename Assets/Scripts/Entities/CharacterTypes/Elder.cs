@@ -90,64 +90,29 @@ namespace PEC1.Entities.CharacterTypes
         }
         
         /// <summary>
-        /// Method <c>HandleCollisionEnter</c> invokes the type OnCollisionEnter method.
+        /// Method <c>HandleCollisions</c> invokes the type HandleCollisions method.
         /// </summary>
+        /// <param name="type">The type of collision.</param>
         /// <param name="col">The collision.</param>
-        /// <param name="tag">The tag of the game object containing the collider.</param>
-        public void HandleCollisionEnter(Collision col, string tag)
+        /// <param name="tag">The tag of the collision.</param>
+        public void HandleCollisions(CollisionProperties.Types type, Collision col, string tag)
         {
+            // Elders don't need to handle collisions
         }
         
         /// <summary>
-        /// Method <c>HandleCollisionStay</c> invokes the type OnCollisionStay method.
+        /// Method <c>HandleTriggers</c> invokes the type HandleTriggers method.
         /// </summary>
-        /// <param name="col">The collision.</param>
-        /// <param name="tag">The tag of the game object containing the collider.</param>
-        public void HandleCollisionStay(Collision col, string tag)
+        /// <param name="type">The type of collision.</param>
+        /// <param name="col">The collider.</param>
+        /// <param name="tag">The tag of the collider.</param>
+        public void HandleTriggers(CollisionProperties.Types type, Collider col, string tag)
         {
+            if (type != CollisionProperties.Types.TriggerEnter)
+                return;
+            
+            if (col.transform.CompareTag("RestArea"))
+                Rest();
         }
-        
-        /// <summary>
-        /// Method <c>HandleCollisionExit</c> invokes the type OnCollisionExit method.
-        /// </summary>
-        /// <param name="col">The collision.</param>
-        /// <param name="tag">The tag of the game object containing the collider.</param>
-        public void HandleCollisionExit(Collision col, string tag)
-        {
-        }
-        
-        /// <summary>
-        /// Method <c>HandleTriggerEnter</c> invokes the type OnTriggerEnter method.
-        /// </summary>
-        /// <param name="col">The other collider.</param>
-        /// <param name="tag">The tag of the game object containing the collider.</param>
-        public void HandleTriggerEnter(Collider col, string tag)
-        {
-            switch (col.transform.tag)
-            {
-                case "RestArea":
-                    Rest();
-                    break;
-            }
-        }
-        
-        /// <summary>
-        /// Method <c>HandleTriggerStay</c> invokes the type OnTriggerStay method.
-        /// </summary>
-        /// <param name="col">The other collider.</param>
-        /// <param name="tag">The tag of the game object containing the collider.</param>
-        public void HandleTriggerStay(Collider col, string tag)
-        {
-        }
-        
-        /// <summary>
-        /// Method <c>HandleTriggerExit</c> invokes the type OnTriggerExit method.
-        /// </summary>
-        /// <param name="col">The other collider.</param>
-        /// <param name="tag">The tag of the game object containing the collider.</param>
-        public void HandleTriggerExit(Collider col, string tag)
-        {
-        }
-
     }
 }

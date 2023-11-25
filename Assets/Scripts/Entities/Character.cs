@@ -115,14 +115,11 @@ namespace PEC1.Entities
         private void Start()
         {
             // Get the components
-            if (animator == null)
-                animator = GetComponent<Animator>();
-            if (agent == null)
-                agent = GetComponent<NavMeshAgent>();
+            animator ??= GetComponent<Animator>();
+            agent ??= GetComponent<NavMeshAgent>();
             
             // Find the path creator
-            if (pathCreator == null)
-                pathCreator = FindObjectOfType<PathCreator>();
+            pathCreator ??= FindObjectOfType<PathCreator>();
             
             // Invoke the current type Start method
             CurrentType.StartType();
@@ -157,7 +154,7 @@ namespace PEC1.Entities
             private void OnCollisionEnter(Collision col)
             {
                 if (col.transform.parent != transform)
-                    CurrentType.HandleCollisionEnter(col, transform.tag);
+                    CurrentType.HandleCollisions(CollisionProperties.Types.CollisionEnter, col, transform.tag);
             }
             
             /// <summary>
@@ -167,7 +164,7 @@ namespace PEC1.Entities
             private void OnCollisionStay(Collision col)
             {
                 if (col.transform.parent != transform)
-                    CurrentType.HandleCollisionStay(col, transform.tag);
+                    CurrentType.HandleCollisions(CollisionProperties.Types.CollisionStay, col, transform.tag);
             }
             
             /// <summary>
@@ -177,7 +174,7 @@ namespace PEC1.Entities
             private void OnCollisionExit(Collision col)
             {
                 if (col.transform.parent != transform)
-                    CurrentType.HandleCollisionExit(col, transform.tag);
+                    CurrentType.HandleCollisions(CollisionProperties.Types.CollisionExit, col, transform.tag);
             }
             
             /// <summary>
@@ -187,7 +184,7 @@ namespace PEC1.Entities
             private void OnTriggerEnter(Collider col)
             {
                 if (col.transform.parent != transform)
-                    CurrentType.HandleTriggerEnter(col, transform.tag);
+                    CurrentType.HandleTriggers(CollisionProperties.Types.TriggerEnter, col, transform.tag);
             }
             
             /// <summary>
@@ -197,7 +194,7 @@ namespace PEC1.Entities
             private void OnTriggerStay(Collider col)
             {
                 if (col.transform.parent != transform)
-                    CurrentType.HandleTriggerStay(col, transform.tag);
+                    CurrentType.HandleTriggers(CollisionProperties.Types.TriggerStay, col, transform.tag);
             }
             
             /// <summary>
@@ -207,7 +204,7 @@ namespace PEC1.Entities
             private void OnTriggerExit(Collider col)
             {
                 if (col.transform.parent != transform)
-                    CurrentType.HandleTriggerExit(col, transform.tag);
+                    CurrentType.HandleTriggers(CollisionProperties.Types.TriggerExit, col, transform.tag);
             }
 
         #endregion
