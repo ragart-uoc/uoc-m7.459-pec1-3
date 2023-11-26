@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PEC1.Entities.CharacterTypes
+namespace M7459.Entities.CharacterTypes
 {
     /// <summary>
     /// Interface <c>ICharacterType</c> is the interface for the character types.

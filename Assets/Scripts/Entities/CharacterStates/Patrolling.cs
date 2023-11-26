@@ -1,6 +1,6 @@
-using PEC1.Managers;
+using M7459.Managers;
 
-namespace PEC1.Entities.CharacterStates
+namespace M7459.Entities.CharacterStates
 {
     public class Patrolling : ICharacterState
     {

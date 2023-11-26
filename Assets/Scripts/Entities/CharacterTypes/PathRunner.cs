@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PEC1.Entities.CharacterTypes
+namespace M7459.Entities.CharacterTypes
 {
     /// <summary>
     /// Class <c>PathRunner</c> is the class for the PathRunner character type.

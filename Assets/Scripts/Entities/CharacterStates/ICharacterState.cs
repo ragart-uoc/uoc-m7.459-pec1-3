@@ -1,4 +1,4 @@
-namespace PEC1.Entities.CharacterStates
+namespace M7459.Entities.CharacterStates
 {
     /// <summary>
     /// Interface <c>ICharacterState</c> is the interface for the character states.

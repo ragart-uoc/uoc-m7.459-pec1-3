@@ -1,4 +1,4 @@
-namespace PEC1.Entities
+namespace M7459.Entities
 {
     /// <summary>
     /// Class <c>CharacterProperties</c> represents the properties of the character.

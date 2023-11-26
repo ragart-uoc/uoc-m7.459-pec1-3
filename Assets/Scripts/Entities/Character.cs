@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using PathCreation;
-using PEC1.Entities.CharacterTypes;
-using PEC1.Entities.CharacterStates;
-using PEC1.Managers;
+using M7459.Entities.CharacterStates;
+using M7459.Entities.CharacterTypes;
+using M7459.Managers;
 
-namespace PEC1.Entities
+namespace M7459.Entities
 {
     /// <summary>
     /// Class <c>Character</c> is the base class for all characters.

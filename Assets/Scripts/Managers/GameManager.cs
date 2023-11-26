@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using PEC1.Entities;
+using M7459.Entities;
 
-namespace PEC1.Managers
+namespace M7459.Managers
 {
     /// <summary>
     /// Class <c>GameManager</c> represents the game manager.
