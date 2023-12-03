@@ -1640,15 +1640,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 384974929}
-        m_TargetAssemblyTypeName: PEC1.Managers.GameManager, Assembly-CSharp
-        m_MethodName: AddElder
-        m_Mode: 1
+        m_TargetAssemblyTypeName: M7459.Managers.GameManager, Assembly-CSharp
+        m_MethodName: AddCharacter
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Elder
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &262145513
@@ -2802,22 +2802,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0b9ac96c0c47145a013cc131b8e20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runnerPrefab: {fileID: 2322625570964632478, guid: 43c5fbaf5bc9c7f4286941043ced5718, type: 3}
-  maxRunners: 25
-  runners: 8
-  runnerMinSpeed: 2
-  runnerMaxSpeed: 5
-  addRunnerButton: {fileID: 2010888952}
-  elderPrefab: {fileID: 578703726022118965, guid: b8771c6be62f8b047b68abeffc29d6c6, type: 3}
-  elderSpawnAreasContainer: {fileID: 1045514310}
-  elderSpawnAreas: []
-  maxElders: 25
-  elders: 8
-  elderMinSpeed: 1
-  elderMaxSpeed: 2
-  addElderButton: {fileID: 262145512}
-  runnerWaypointContainer: {fileID: 182844890}
-  runnerWaypoints: []
+  characterStructs:
+  - characterType: 0
+    prefab: {fileID: 578703726022118965, guid: b8771c6be62f8b047b68abeffc29d6c6, type: 3}
+    instances: 8
+    maxInstances: 25
+    wanderRadius: 10
+    restingTime: 5
+    minSpeed: 1
+    maxSpeed: 2
+    addButton: {fileID: 262145512}
+    locationContainer: {fileID: 1045514310}
+    locationList: []
+  - characterType: 1
+    prefab: {fileID: 2322625570964632478, guid: 43c5fbaf5bc9c7f4286941043ced5718, type: 3}
+    instances: 8
+    maxInstances: 25
+    wanderRadius: 10
+    restingTime: 5
+    minSpeed: 2
+    maxSpeed: 5
+    addButton: {fileID: 2010888952}
+    locationContainer: {fileID: 182844891}
+    locationList: []
 --- !u!4 &384974930
 Transform:
   m_ObjectHideFlags: 0
@@ -3769,7 +3776,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Salvador Banderas Rovira @ 2023
+  m_text: Salvador Banderas Rovira @ 2023 - 2024
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 27dd93bcb1cff684f9774fc40af1223a, type: 2}
   m_sharedMaterial: {fileID: 8640668388454372021, guid: 27dd93bcb1cff684f9774fc40af1223a, type: 2}
@@ -6260,7 +6267,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3947831072735288785, guid: bf462f4616d8d4e4390fac5fb7cff417, type: 3}
       propertyPath: m_Name
-      value: RestBench
+      value: Bench
       objectReference: {fileID: 0}
     - target: {fileID: 9141599490654356180, guid: bf462f4616d8d4e4390fac5fb7cff417, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8084,7 +8091,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3947831072735288785, guid: bf462f4616d8d4e4390fac5fb7cff417, type: 3}
       propertyPath: m_Name
-      value: RestBench
+      value: Bench
       objectReference: {fileID: 0}
     - target: {fileID: 9141599490654356180, guid: bf462f4616d8d4e4390fac5fb7cff417, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8628,7 +8635,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3947831072735288785, guid: bf462f4616d8d4e4390fac5fb7cff417, type: 3}
       propertyPath: m_Name
-      value: RestBench
+      value: Bench
       objectReference: {fileID: 0}
     - target: {fileID: 9141599490654356180, guid: bf462f4616d8d4e4390fac5fb7cff417, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10242,7 +10249,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3947831072735288785, guid: bf462f4616d8d4e4390fac5fb7cff417, type: 3}
       propertyPath: m_Name
-      value: RestBench
+      value: Bench
       objectReference: {fileID: 0}
     - target: {fileID: 9141599490654356180, guid: bf462f4616d8d4e4390fac5fb7cff417, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10685,7 +10692,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3947831072735288785, guid: bf462f4616d8d4e4390fac5fb7cff417, type: 3}
       propertyPath: m_Name
-      value: RestBench
+      value: Bench
       objectReference: {fileID: 0}
     - target: {fileID: 9141599490654356180, guid: bf462f4616d8d4e4390fac5fb7cff417, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11420,15 +11427,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 384974929}
-        m_TargetAssemblyTypeName: PEC1.Managers.GameManager, Assembly-CSharp
-        m_MethodName: AddRunner
-        m_Mode: 1
+        m_TargetAssemblyTypeName: M7459.Managers.GameManager, Assembly-CSharp
+        m_MethodName: AddCharacter
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Runner
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2010888953
@@ -12085,7 +12092,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3947831072735288785, guid: bf462f4616d8d4e4390fac5fb7cff417, type: 3}
       propertyPath: m_Name
-      value: RestBench
+      value: Bench
       objectReference: {fileID: 0}
     - target: {fileID: 9141599490654356180, guid: bf462f4616d8d4e4390fac5fb7cff417, type: 3}
       propertyPath: m_LocalPosition.x

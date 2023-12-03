@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace M7459.Entities.CharacterTypes
@@ -10,12 +10,6 @@ namespace M7459.Entities.CharacterTypes
     {
         /// <value>Property <c>Character</c> represents the character.</value>
         private readonly Character _character;
-        
-        /// <value>Property <c>TargetTags</c> represents the tags of the targets.</value>
-        public List<string> TargetTags { get; set; } = new()
-        {
-            "RestArea"
-        };
 
         /// <summary>
         /// Class constructor <c>Elder</c> initializes the class.
@@ -36,7 +30,7 @@ namespace M7459.Entities.CharacterTypes
             _character.animator.Update(0f);
             
             // Start the state
-            Wander();
+            _character.CurrentType.Wander();
         }
 
         /// <summary>
@@ -60,14 +54,6 @@ namespace M7459.Entities.CharacterTypes
                 return;
             _character.CurrentState = _character.CharacterStates[CharacterProperties.States.Resting];
             _character.CurrentState.StartState();
-        }
-
-        /// <summary>
-        /// Method <c>StopResting</c> invokes the type StopResting method.
-        /// </summary>
-        public void StopResting()
-        {
-            Wander();
         }
         
         /// <summary>
@@ -108,11 +94,42 @@ namespace M7459.Entities.CharacterTypes
         /// <param name="tag">The tag of the collider.</param>
         public void HandleTriggers(CollisionProperties.Types type, Collider col, string tag)
         {
-            if (type != CollisionProperties.Types.TriggerEnter)
+            // Check if the collider is a rest area
+            if (!col.transform.CompareTag("RestArea"))
                 return;
+            var restArea = col.gameObject.GetComponent<RestArea>();
             
-            if (col.transform.CompareTag("RestArea"))
-                Rest();
+            // Check if the rest area is occupied
+            if (restArea.isOccupied && restArea.occupant != _character.gameObject)
+                return;
+
+            switch (type)
+            {
+                case CollisionProperties.Types.TriggerEnter:
+                    // Set the rest area as occupied
+                    restArea.isOccupied = true;
+                    restArea.occupant = _character.gameObject;
+
+                    // Set the rest area positions
+                    _character.restAreaEnterPosition = restArea.enterPosition;
+                    _character.restAreaExitPosition = restArea.exitPosition;
+
+                    // Rest
+                    _character.CurrentType.Rest();
+                    break;
+                case CollisionProperties.Types.TriggerExit:
+                    // Set the rest area as not occupied
+                    restArea.isOccupied = false;
+                    restArea.occupant = null;
+
+                    // Unset the rest area positions
+                    _character.restAreaEnterPosition = null;
+                    _character.restAreaExitPosition = null;
+
+                    // Wander
+                    _character.CurrentType.Wander();
+                    break;
+            }
         }
     }
 }

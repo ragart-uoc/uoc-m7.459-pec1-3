@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace M7459.Entities.CharacterTypes
@@ -10,9 +9,6 @@ namespace M7459.Entities.CharacterTypes
     {
         /// <value>Property <c>Character</c> represents the character.</value>
         private readonly Character _character;
-        
-        /// <value>Property <c>TargetTags</c> represents the tags of the targets.</value>
-        public List<string> TargetTags { get; set; }
 
         /// <summary>
         /// Class constructor <c>PathRunner</c> initializes the class.
@@ -28,12 +24,19 @@ namespace M7459.Entities.CharacterTypes
         /// </summary>
         public void StartType()
         {
+            // Randomize the agent speed
+            _character.agent.speed = Random.Range(_character.minSpeed, _character.maxSpeed);
+            _character.agent.acceleration = _character.agent.speed * 2f;
+            
+            // Randomize the agent direction
+            _character.patrolDirection = Random.value > 0.5f;
+            
             // Reset the animator
             _character.animator.Rebind();
             _character.animator.Update(0f);
             
             // Start the state
-            Patrol();
+            _character.CurrentType.Patrol();
         }
 
         /// <summary>
@@ -49,14 +52,6 @@ namespace M7459.Entities.CharacterTypes
         /// Method <c>Rest</c> invokes the type Rest method.
         /// </summary>
         public void Rest()
-        {
-            // PathRunners don't rest
-        }
-
-        /// <summary>
-        /// Method <c>StopResting</c> invokes the type StopResting method.
-        /// </summary>
-        public void StopResting()
         {
             // PathRunners don't rest
         }

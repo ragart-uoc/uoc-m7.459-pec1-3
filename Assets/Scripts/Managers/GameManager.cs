@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using M7459.Entities;
+using Random = UnityEngine.Random;
 
 namespace M7459.Managers
 {
@@ -13,53 +14,8 @@ namespace M7459.Managers
         /// <value>Property <c>Instance</c> represents the singleton instance of the class.</value>
         public static GameManager Instance;
         
-        /// <value>Property <c>runnerPrefab</c> represents the runner prefab.</value>
-        public GameObject runnerPrefab;
-
-        /// <value>Property <c>maxRunners</c> represents the maximum number of runners.</value>
-        public int maxRunners = 25;
-        
-        /// <value>Property <c>runners</c> represents the number of runners.</value>
-        public int runners = 8;
-        
-        /// <value>Property <c>runnerMinSpeed</c> represents the minimum speed of the runners.</value>
-        public float runnerMinSpeed = 2.0f;
-        
-        /// <value>Property <c>runnerMaxSpeed</c> represents the maximum speed of the runners.</value>
-        public float runnerMaxSpeed = 5.0f;
-        
-        /// <value>Property <c>addRunnerButton</c> represents the add runner button.</value>
-        public Button addRunnerButton;
-        
-        /// <value>Property <c>elderPrefab</c> represents the elder prefab.</value>
-        public GameObject elderPrefab;
-
-        /// <value>Property <c>elderSpawnAreasContainer</c> represents the elder spawn areas container.</value>
-        public Transform elderSpawnAreasContainer;
-        
-        /// <value>Property <c>elderSpawnAreas</c> represents the elder spawn areas.</value>
-        public Transform[] elderSpawnAreas;
-        
-        /// <value>Property <c>maxElders</c> represents the maximum number of elders.</value>
-        public int maxElders = 25;
-        
-        /// <value>Property <c>elders</c> represents the number of elders.</value>
-        public int elders = 8;
-        
-        /// <value>Property <c>elderMinSpeed</c> represents the minimum speed of the elders.</value>
-        public float elderMinSpeed = 1f;
-        
-        /// <value>Property <c>elderMaxSpeed</c> represents the maximum speed of the elders.</value>
-        public float elderMaxSpeed = 2f;
-        
-        /// <value>Property <c>addElderButton</c> represents the add elder button.</value>
-        public Button addElderButton;
-
-        /// <value>Property <c>runnerWaypointContainer</c> represents the runner waypoints.</value>
-        public GameObject runnerWaypointContainer;
-        
-        /// <value>Property <c>runnerWaypoints</c> represents the runner waypoints.</value>
-        public Transform[] runnerWaypoints;
+        /// <value>Property <c>characterStructs</c> represents the character structs.</value>
+        public CharacterStruct[] characterStructs;
 
         /// <summary>
         /// Method <c>Awake</c> is called when the script instance is being loaded.
@@ -80,107 +36,23 @@ namespace M7459.Managers
         /// </summary>
         private void Start()
         {
-            // Get the elder spawn areas
-            elderSpawnAreas = new Transform[elderSpawnAreasContainer.transform.childCount];
-            for (var i = 0; i < elderSpawnAreasContainer.transform.childCount; i++)
+            // Loop through the character structs
+            for (var i = 0; i < characterStructs.Length; i++)
             {
-                elderSpawnAreas[i] = elderSpawnAreasContainer.transform.GetChild(i);
+                // Get the location list from the container
+                characterStructs[i].locationList = new Transform[characterStructs[i].locationContainer.childCount];
+                for (var j = 0; j < characterStructs[i].locationContainer.childCount; j++)
+                {
+                    characterStructs[i].locationList[j] = characterStructs[i].locationContainer.GetChild(j);
+                }
+                
+                // Spawn the characters
+                characterStructs[i].instances = Mathf.Clamp(characterStructs[i].instances, 0, characterStructs[i].maxInstances);
+                for (var j = 0; j < characterStructs[i].instances; j++)
+                {
+                    AddCharacterFromStruct(i);
+                }
             }
-            
-            // Spawn the elders
-            elders = Mathf.Clamp(elders, 0, maxElders);
-            for (var i = 0; i < elders; i++)
-            {
-                SpawnElder();
-            }
-
-            // Get the runner waypoints
-            runnerWaypoints = new Transform[runnerWaypointContainer.transform.childCount];
-            for (var i = 0; i < runnerWaypointContainer.transform.childCount; i++)
-            {
-                runnerWaypoints[i] = runnerWaypointContainer.transform.GetChild(i);
-            }
-
-            // Spawn the runners
-            runners = Mathf.Clamp(runners, 0, maxRunners);
-            for (var i = 0; i < runners; i++)
-            {
-                SpawnRunner();
-            }
-        }
-
-        /// <summary>
-        /// Method <c>SpawnCharacterRandomList</c> spawns a character in a random position of a list.
-        /// </summary>
-        /// <param name="prefab">The character prefab.</param>
-        /// <param name="list">The spawn list.</param>
-        /// <returns>The character instance.</returns>
-        public GameObject SpawnCharacterRandomList(GameObject prefab, Transform[] list)
-        {
-            // Spawn the character in the position of a random Transform in the list
-            var instance = Instantiate(prefab, 
-                list[Random.Range(0, list.Length)].position,
-                Quaternion.identity);
-            return instance;
-        }
-        
-        /// <summary>
-        /// Method <c>SpawnCharacterKeyList</c> spawns a character in a position of a list.
-        /// </summary>
-        /// <param name="prefab">The character prefab.</param>
-        /// <param name="list">The spawn list.</param>
-        /// <param name="key">The key of the list.</param>
-        /// <returns>The character instance.</returns>
-        public GameObject SpawnCharacterKeyList(GameObject prefab, Transform[] list, int key)
-        {
-            // Spawn the character in the position of a random Transform in the list
-            var instance = Instantiate(prefab, 
-                list[key].position,
-                Quaternion.identity);
-            return instance;
-        }
-
-        /// <summary>
-        /// Method <c>SpawnElder</c> spawns an elder.
-        /// </summary>
-        public void SpawnElder()
-        {
-            SpawnCharacterRandomList(elderPrefab, elderSpawnAreas);
-        }
-
-        /// <summary>
-        /// Method <c>SpawnRunner</c> spawns a runner.
-        /// </summary>
-        public void SpawnRunner()
-        {
-            var randomWaypointKey = Random.Range(0, runnerWaypoints.Length);
-            var instance = SpawnCharacterKeyList(runnerPrefab, runnerWaypoints, randomWaypointKey);
-            var instanceCharacter = instance.GetComponent<Character>();
-            
-            // Set the starting waypoint
-            instanceCharacter.startingWayPoint = randomWaypointKey;
-            instanceCharacter.nextWayPoint = randomWaypointKey;
-
-            // Randomize the agent speed
-            instanceCharacter.agent.speed = Random.Range(runnerMinSpeed, runnerMaxSpeed);
-            instanceCharacter.agent.acceleration = instanceCharacter.agent.speed * 2f;
-            
-            // Randomize the agent direction
-            instanceCharacter.patrolDirection = Random.value > 0.5f;
-        }
-        
-        /// <summary>
-        /// Method <c>GetNextItemInList</c> returns the next item in a list.
-        /// </summary>
-        /// <param name="index">The current index.</param>
-        /// <param name="listLength">The length of the list.</param>
-        /// <param name="direction">The direction of the list.</param>
-        /// <returns>The next item in the list.</returns>
-        public int GetNextItemInList(int index, int listLength, bool direction)
-        {
-            return direction
-                ? (index + 1) % listLength
-                : (index - 1 + listLength) % listLength;
         }
 
         /// <summary>
@@ -190,35 +62,67 @@ namespace M7459.Managers
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+
+        /// <summary>
+        /// Method <c>SpawnCharacter</c> spawns a character.
+        /// <param name="prefab">The character prefab.</param>
+        /// <param name="locationList">The spawn list.</param>
+        /// </summary>
+        private Character SpawnCharacter(GameObject prefab, Transform[] locationList)
+        {
+            var randomLocationKey = Random.Range(0, locationList.Length);
+            var instance = Instantiate(prefab, 
+                locationList[randomLocationKey].position,
+                Quaternion.identity);
+            var instanceCharacter = instance.GetComponent<Character>();
+                instanceCharacter.startingLocation = randomLocationKey;
+                instanceCharacter.nextLocation = randomLocationKey;
+            return instanceCharacter;
+        }
         
         /// <summary>
-        /// Method <c>AddRunner</c> adds a runner.
+        /// Method <c>AddCharacterFromStruct</c> adds a character from a struct.
         /// </summary>
-        public void AddRunner()
+        /// <param name="typeIndex">The type index in the struct list.</param>
+        private void AddCharacterFromStruct(int typeIndex)
         {
-            runners++;
-            if (runners > maxRunners)
-            {
-                runners = maxRunners;
-                addRunnerButton.interactable = false;
-                return;
-            }
-            SpawnRunner();
+            // Check if the button should be disabled
+            if (characterStructs[typeIndex].instances == characterStructs[typeIndex].maxInstances)
+                characterStructs[typeIndex].addButton.interactable = false;
+
+            // Spawn the character
+            var instance = SpawnCharacter(characterStructs[typeIndex].prefab, characterStructs[typeIndex].locationList);
+                instance.locationList = characterStructs[typeIndex].locationList;
+                instance.wanderRadius = characterStructs[typeIndex].wanderRadius;
+                instance.restingTime = characterStructs[typeIndex].restingTime;
+                instance.maxSpeed = characterStructs[typeIndex].maxSpeed;
+                instance.minSpeed = characterStructs[typeIndex].minSpeed;
+                instance.canStart = true;
         }
 
         /// <summary>
-        /// Method <c>AddElder</c> adds an elder.
+        /// Method <c>AddCharacter</c> adds a character.
         /// </summary>
-        public void AddElder()
+        /// <param name="type">The character type.</param>
+        public void AddCharacter(string type)
         {
-            elders++;
-            if (elders > maxElders)
-            {
-                elders = maxElders;
-                addElderButton.interactable = false;
+            // Get the type index
+            var typeIndex = Array.FindIndex(characterStructs,
+                x => x.characterType.ToString() == type);
+
+            // Check if the type exists
+            if (typeIndex < 0)
                 return;
-            }
-            SpawnElder();
+            
+            // Check if the instances are at the maximum
+            if (characterStructs[typeIndex].instances == characterStructs[typeIndex].maxInstances)
+                return;
+            
+            // Increase the instances
+            characterStructs[typeIndex].instances++;
+            
+            // Add the character
+            AddCharacterFromStruct(typeIndex);
         }
     }
 }

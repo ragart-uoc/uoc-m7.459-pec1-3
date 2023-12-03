@@ -4,7 +4,6 @@ using UnityEngine.AI;
 using PathCreation;
 using M7459.Entities.CharacterStates;
 using M7459.Entities.CharacterTypes;
-using M7459.Managers;
 
 namespace M7459.Entities
 {
@@ -52,30 +51,61 @@ namespace M7459.Entities
         
         #region Character Settings
 
+            /// <value>Property <c>autoStart</c> represents if the character should auto start.</value>
+            private bool _started;
+            
+            /// <value>Property <c>canStart</c> represents if the character can start.</value>
+            [HideInInspector]
+            public bool canStart;
+
             /// <value>Property <c>wanderRadius</c> represents the wander radius.</value>
-            [Header("Settings")]
-            public float wanderRadius = 10f;
+            [HideInInspector]
+            public float wanderRadius;
             
             /// <value>Property <c>restingTime</c> represents the resting time.</value>
-            public float restingTime = 5f;
+            [HideInInspector]
+            public float restingTime;
+
+            /// <value>Property <c>minSpeed</c> represents the minimum speed.</value>
+            [HideInInspector]
+            public float minSpeed;
+
+            /// <value>Property <c>maxSpeed</c> represents the maximum speed.</value>
+            [HideInInspector]
+            public float maxSpeed;
             
             /// <value>Property <c>patrolDirection</c> represents the patrol direction.</value>
+            [HideInInspector]
             public bool patrolDirection;
         
         #endregion
         
         #region Navigation
+
+            /// <value>Property <c>locationList</c> represents the character location list.</value>
+            [HideInInspector]
+            public Transform[] locationList;
+
+            /// <value>Property <c>startingLocation</c> represents the character starting location.</value>
+            [HideInInspector]
+            public int startingLocation;
         
-            /// <value>Property <c>startingWayPoint</c> represents the character starting way point.</value>
-            public int startingWayPoint;
-        
-            /// <value>Property <c>_nextWayPoint</c> represents the character next way point.</value>
-            public int nextWayPoint;
+            /// <value>Property <c>nextLocation</c> represents the character next location.</value>
+            [HideInInspector]
+            public int nextLocation;
+            
+            /// <value>Property <c>restAreaEnterPosition</c> represents the character rest area enter position.</value>
+            public Transform restAreaEnterPosition;
+            
+            /// <value>Property <c>restAreaExitPosition</c> represents the character rest area exit position.</value>
+            public Transform restAreaExitPosition;
 
             /// <value>Property <c>pathCreator</c> represents the character path creator.</value>
+            [HideInInspector]
             public PathCreator pathCreator;
             
             /// <value>Property <c>endOfPathInstruction</c> represents the character end of path instruction.</value>
+            [HideInInspector]
             public EndOfPathInstruction endOfPathInstruction;
             
         #endregion
@@ -84,6 +114,9 @@ namespace M7459.Entities
         
             /// <value>Property <c>AnimatorSpeed</c> represents the character speed animation.</value>
             public readonly int AnimatorSpeed = Animator.StringToHash("Speed");
+            
+            /// <value>Property <c>AnimatorSitting</c> represents the character sitting animation.</value>
+            public readonly int AnimatorSitting = Animator.StringToHash("Sitting");
         
         #endregion
 
@@ -117,12 +150,9 @@ namespace M7459.Entities
             // Get the components
             animator ??= GetComponent<Animator>();
             agent ??= GetComponent<NavMeshAgent>();
-            
+
             // Find the path creator
             pathCreator ??= FindObjectOfType<PathCreator>();
-            
-            // Invoke the current type Start method
-            CurrentType.StartType();
         }
 
         /// <summary>
@@ -130,18 +160,44 @@ namespace M7459.Entities
         /// </summary>
         private void Update()
         {
-            // Invoke the current type Update method
-            CurrentType.UpdateType();
+            switch (_started)
+            {
+                // Check for delayed start
+                case false when !canStart:
+                    return;
+                case false when canStart:
+                    CurrentType.StartType();
+                    _started = true;
+                    break;
+                // Invoke the current type Update method
+                default:
+                    CurrentType.UpdateType();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Method <c>GetNextItemInList</c> returns the next item in a list.
+        /// </summary>
+        /// <param name="index">The current index.</param>
+        /// <param name="listLength">The length of the list.</param>
+        /// <param name="direction">The direction of the list.</param>
+        /// <returns>The next item in the list.</returns>
+        private int GetNextItemInList(int index, int listLength, bool direction)
+        {
+            return direction
+                ? (index + 1) % listLength
+                : (index - 1 + listLength) % listLength;
         }
         
         /// <summary>
-        /// Method <c>Get</c> sets the next way point.
+        /// Method <c>SetNextLocation</c> sets the next location.
         /// </summary>
-        public void SetNextWayPoint()
+        public void SetNextLocation()
         {
-            nextWayPoint = GameManager.Instance.GetNextItemInList(
-                nextWayPoint,
-                GameManager.Instance.runnerWaypoints.Length,
+            nextLocation = GetNextItemInList(
+                nextLocation,
+                locationList.Length,
                 patrolDirection);
         }
         
@@ -226,6 +282,26 @@ namespace M7459.Entities
                 return navHit.position;
             }
         
+        #endregion
+        
+        #region Animator Events
+
+            /// <summary>
+            /// Method <c>SittingFinished</c> is called when the character finishes sitting.
+            /// </summary>
+            public void SittingFinished()
+            {
+                CurrentState.HandleAnimations(AnimatorProperties.Events.SittingFinished);
+            }
+
+            /// <summary>
+            /// Method <c>StandingUpFinished</c> is called when the character finishes standing up.
+            /// </summary>
+            public void StandingUpFinished()
+            {
+                CurrentState.HandleAnimations(AnimatorProperties.Events.StandingUpFinished);
+            }
+            
         #endregion
         
     }

@@ -20,7 +20,8 @@ namespace M7459.Entities.CharacterStates
         public void StartState()
         {
             _character.agent.isStopped = false;
-            Wander();
+            if (!_character.agent.hasPath)
+                Wander();
         }
 
         /// <summary>
@@ -43,6 +44,14 @@ namespace M7459.Entities.CharacterStates
                     
             // Set the destination
             _character.agent.SetDestination(randomPosition);
+        }
+        
+        /// <summary>
+        /// Method <c>HandleAnimations</c> invokes the state HandleAnimations method.
+        /// <param name="animationEvent">The animation event.</param>
+        /// </summary>
+        public void HandleAnimations(AnimatorProperties.Events animationEvent)
+        {
         }
     }
 }

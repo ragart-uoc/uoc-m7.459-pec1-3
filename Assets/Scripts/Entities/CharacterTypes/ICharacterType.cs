@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace M7459.Entities.CharacterTypes
@@ -8,9 +7,6 @@ namespace M7459.Entities.CharacterTypes
     /// </summary>
     public interface ICharacterType
     {
-        /// <value>Property <c>TargetTags</c> represents the tags of the targets.</value>
-        List<string> TargetTags { get; set; }
-
         /// <summary>
         /// Method <c>StartType</c> invokes the type Start method.
         /// </summary>
@@ -25,11 +21,6 @@ namespace M7459.Entities.CharacterTypes
         /// Method <c>Rest</c> invokes the type Rest method.
         /// </summary>
         void Rest();
-        
-        /// <summary>
-        /// Method <c>StopResting</c> invokes the type StopResting method.
-        /// </summary>
-        void StopResting();
         
         /// <summary>
         /// Method <c>Patrol</c> invokes the type Patrol method.

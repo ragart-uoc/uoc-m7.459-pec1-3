@@ -53,5 +53,13 @@ namespace M7459.Entities.CharacterStates
                 }        
             }
         }
+        
+        /// <summary>
+        /// Method <c>HandleAnimations</c> invokes the state HandleAnimations method.
+        /// <param name="animationEvent">The animation event.</param>
+        /// </summary>
+        public void HandleAnimations(AnimatorProperties.Events animationEvent)
+        {
+        }
     }
 }

@@ -14,5 +14,11 @@ namespace M7459.Entities.CharacterStates
         /// Method <c>UpdateState</c> invokes the state Update method.
         /// </summary>
         void UpdateState();
+        
+        /// <summary>
+        /// Method <c>HandleAnimations</c> invokes the state HandleAnimations method.
+        /// <param name="animationEvent">The animation event.</param>
+        /// </summary>
+        void HandleAnimations(AnimatorProperties.Events animationEvent);
     }
 }

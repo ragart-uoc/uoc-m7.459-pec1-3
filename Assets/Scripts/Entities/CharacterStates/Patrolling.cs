@@ -1,5 +1,3 @@
-using M7459.Managers;
-
 namespace M7459.Entities.CharacterStates
 {
     public class Patrolling : ICharacterState
@@ -22,8 +20,8 @@ namespace M7459.Entities.CharacterStates
         public void StartState()
         {
             _character.agent.isStopped = false;
-            _character.SetNextWayPoint();
-            _character.agent.destination = GameManager.Instance.runnerWaypoints[_character.nextWayPoint].position;
+            _character.SetNextLocation();
+            _character.agent.destination = _character.locationList[_character.nextLocation].position;
         }
 
         /// <summary>
@@ -33,9 +31,17 @@ namespace M7459.Entities.CharacterStates
         {
             if (_character.agent.pathPending || _character.agent.remainingDistance > _character.agent.stoppingDistance)
                 return;
-            // Define the next way point depending on the direction
-            _character.SetNextWayPoint();
-            _character.agent.destination = GameManager.Instance.runnerWaypoints[_character.nextWayPoint].position;
+            // Define the next location depending on the direction
+            _character.SetNextLocation();
+            _character.agent.destination = _character.locationList[_character.nextLocation].position;
+        }
+        
+        /// <summary>
+        /// Method <c>HandleAnimations</c> invokes the state HandleAnimations method.
+        /// <param name="animationEvent">The animation event.</param>
+        /// </summary>
+        public void HandleAnimations(AnimatorProperties.Events animationEvent)
+        {
         }
     }
 }
