@@ -81,12 +81,6 @@ namespace M7459.Entities.CharacterStates
                     _character.animator.SetBool(_character.AnimatorSitting, false);
 
                     break;
-
-                case RestingState.ExitingRestArea:
-                    
-                    
-                    
-                    break;
             }
         }
 

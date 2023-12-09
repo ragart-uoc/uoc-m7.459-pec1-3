@@ -62,6 +62,14 @@ namespace M7459.Entities
             [HideInInspector]
             public float wanderRadius;
             
+            /// <value>Property <c>wanderOffset</c> represents the wander offset.</value>
+            [HideInInspector]
+            public float wanderOffset;
+            
+            /// <value>Property <c>wanderStoppingDistance</c> represents the wander stopping distance.</value>
+            [HideInInspector]
+            public float wanderStoppingDistance;
+            
             /// <value>Property <c>restingTime</c> represents the resting time.</value>
             [HideInInspector]
             public float restingTime;
@@ -263,25 +271,6 @@ namespace M7459.Entities
                     CurrentType.HandleTriggers(CollisionProperties.Types.TriggerExit, col, transform.tag);
             }
 
-        #endregion
-        
-        #region Navigating
-        
-            /// <summary>
-            /// Method <c>RandomNavSphere</c> returns a random position on the navmesh.
-            /// </summary>
-            /// <param name="origin">The origin position.</param>
-            /// <param name="distance">The distance from the origin position.</param>
-            /// <param name="layermask">The layermask the navmesh is on.</param>
-            /// <returns></returns>
-            public Vector3 RandomNavSphere(Vector3 origin, float distance, int layermask)
-            {
-                var randomDirection = Random.insideUnitSphere * distance;
-                randomDirection += origin;
-                NavMesh.SamplePosition(randomDirection, out var navHit, distance, layermask);
-                return navHit.position;
-            }
-        
         #endregion
         
         #region Animator Events

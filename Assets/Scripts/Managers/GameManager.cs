@@ -94,6 +94,8 @@ namespace M7459.Managers
             var instance = SpawnCharacter(characterStructs[typeIndex].prefab, characterStructs[typeIndex].locationList);
                 instance.locationList = characterStructs[typeIndex].locationList;
                 instance.wanderRadius = characterStructs[typeIndex].wanderRadius;
+                instance.wanderOffset = characterStructs[typeIndex].wanderOffset;
+                instance.wanderStoppingDistance = characterStructs[typeIndex].wanderStoppingDistance;
                 instance.restingTime = characterStructs[typeIndex].restingTime;
                 instance.maxSpeed = characterStructs[typeIndex].maxSpeed;
                 instance.minSpeed = characterStructs[typeIndex].minSpeed;

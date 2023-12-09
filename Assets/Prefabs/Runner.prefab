@@ -564,8 +564,9 @@ MonoBehaviour:
   animator: {fileID: 5735743299280401485}
   agent: {fileID: 7152485774133988123}
   canStart: 0
-  wanderRadius: 10
-  restingTime: 5
+  wanderRadius: 0
+  wanderOffset: 0
+  restingTime: 0
   minSpeed: 0
   maxSpeed: 0
   patrolDirection: 0
@@ -606,7 +607,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2322625570964632478}
   m_Enabled: 1
   m_AgentTypeID: -1372625422
-  m_Radius: 0.7
+  m_Radius: 0.4
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

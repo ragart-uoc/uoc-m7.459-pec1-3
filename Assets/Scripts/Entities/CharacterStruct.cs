@@ -23,6 +23,12 @@ namespace M7459.Entities
 
         /// <value>Property <c>wanderRadius</c> represents the wander radius.</value>
         public float wanderRadius;
+        
+        /// <value>Property <c>wanderOffset</c> represents the wander offset.</value>
+        public float wanderOffset;
+        
+        /// <value>Property <c>wanderStoppingDistance</c> represents the wander stopping distance.</value>
+        public float wanderStoppingDistance;
             
         /// <value>Property <c>restingTime</c> represents the resting time.</value>
         public float restingTime;
