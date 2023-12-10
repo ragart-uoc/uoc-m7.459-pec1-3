@@ -566,6 +566,7 @@ MonoBehaviour:
   canStart: 0
   wanderRadius: 0
   wanderOffset: 0
+  wanderStoppingDistance: 0
   restingTime: 0
   minSpeed: 0
   maxSpeed: 0
