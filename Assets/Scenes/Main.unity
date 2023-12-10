@@ -13457,20 +13457,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
-      propertyPath: blackboard.objectParams.Array.data[0]
-      value: 
-      objectReference: {fileID: 384545137}
-    - target: {fileID: 7727995034446173324, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
       propertyPath: blackboard.objectParams.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7727995034446173324, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
+    - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
       propertyPath: blackboard.objectParams.Array.data[0]
       value: 
       objectReference: {fileID: 384545137}
-    - target: {fileID: 7727995034446173324, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
+    - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
+      propertyPath: blackboard.objectParams.Array.data[1]
+      value: 
+      objectReference: {fileID: 1677091152}
+    - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
       propertyPath: blackboard.objectParamsNames.Array.size
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
+      propertyPath: blackboard.objectParamsNames.Array.data[1]
+      value: EventManager
       objectReference: {fileID: 0}
     - target: {fileID: 8347588901247267629, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
       propertyPath: m_Name
@@ -13581,48 +13585,40 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1801651121325260416, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
-      propertyPath: blackboard.objectParams.Array.data[0]
-      value: 
-      objectReference: {fileID: 1151554055}
-    - target: {fileID: 4119737327118304531, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
-      propertyPath: blackboard.intParams.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4119737327118304531, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
       propertyPath: blackboard.floatParams.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4119737327118304531, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
+    - target: {fileID: 1801651121325260416, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
       propertyPath: blackboard.objectParams.Array.size
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4119737327118304531, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
+    - target: {fileID: 1801651121325260416, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
       propertyPath: blackboard.floatParams.Array.data[0]
-      value: 0
+      value: 0.99
       objectReference: {fileID: 0}
-    - target: {fileID: 4119737327118304531, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
-      propertyPath: blackboard.intParamsNames.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4119737327118304531, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
+    - target: {fileID: 1801651121325260416, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
       propertyPath: blackboard.objectParams.Array.data[0]
       value: 
       objectReference: {fileID: 1151554055}
-    - target: {fileID: 4119737327118304531, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
+    - target: {fileID: 1801651121325260416, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
       propertyPath: blackboard.objectParams.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4119737327118304531, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
+      objectReference: {fileID: 1677091152}
+    - target: {fileID: 1801651121325260416, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
       propertyPath: blackboard.floatParamsNames.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4119737327118304531, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
-      propertyPath: blackboard.intParamsNames.Array.data[0]
-      value: WaypointIndex
-      objectReference: {fileID: 0}
-    - target: {fileID: 4119737327118304531, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
+    - target: {fileID: 1801651121325260416, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
       propertyPath: blackboard.objectParamsNames.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801651121325260416, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
+      propertyPath: blackboard.floatParamsNames.Array.data[0]
+      value: FindProbability
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801651121325260416, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
+      propertyPath: blackboard.objectParamsNames.Array.data[1]
+      value: EventManager
       objectReference: {fileID: 0}
     - target: {fileID: 5434291744061130737, guid: fafa2835b288d4044916adda7b5be3b8, type: 3}
       propertyPath: m_Name

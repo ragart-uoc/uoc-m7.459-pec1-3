@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using M7459.Entities;
 
 namespace M7459.Managers
 {
@@ -10,6 +11,8 @@ namespace M7459.Managers
     {
         /// <value>Property <c>Instance</c> represents the singleton instance of the class.</value>
         public static EventManager Instance;
+        
+        public event EventHandler<CustomEventArgs> OnEventRaised;
 
         /// <summary>
         /// Method <c>Awake</c> is called when the script instance is being loaded.
@@ -25,34 +28,13 @@ namespace M7459.Managers
             Instance = this;
         }
 
-        public void TriggerEvent(object args)
+        /// <summary>
+        /// Method <c>TriggerEvent</c> triggers an event.
+        /// </summary>
+        /// <param name="e">The arguments of the event.</param>
+        public void TriggerEvent(CustomEventArgs e)
         {
-            Debug.Log("Method: " + args.GetType().GetMethod("MethodName"));
-            Debug.Log("Caller: " + args.GetType().GetMethod("Caller"));
-            
-            
-            /*
-            var e = EventArgs.Empty;
-            e.GetType().GetProperty("Args")?.SetValue(e, args);
-            TriggerEvent(handler, e);
-            */
-        }
-
-        public void TriggerEvent(string handler, EventArgs args)
-        {
-            var eventDelegate =
-                (MulticastDelegate)GetType().GetField(handler,
-                    System.Reflection.BindingFlags.Instance |
-                    System.Reflection.BindingFlags.NonPublic)
-                    ?.GetValue(this);
-
-            var delegates = eventDelegate?.GetInvocationList();
-
-            Debug.Assert(delegates != null, nameof(delegates) + " != null");
-            foreach (var dlg in delegates)
-            {
-                dlg.Method.Invoke(dlg.Target, new object[] { this, args });
-            }
+            OnEventRaised?.Invoke(this, e);
         }
     }
 }

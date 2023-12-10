@@ -1,37 +1,41 @@
-using Pada1.BBCore.Tasks;
 using Pada1.BBCore;
+using Pada1.BBCore.Tasks;
 using UnityEngine;
 
 namespace BBUnity.Actions
 {
     /// <summary>
-    /// It is an action to rotate the Gameobject so that it points to the target GameObject position.
+    /// Class <c>RotateTowards</c> is an action to rotate the transform so the forward vector of the game object points at target's current position.
     /// </summary>
     [Action("M7459/GameObject/RotateTowards")]
     [Help("Rotates the transform so the forward vector of the game object points at target's current position")]
     public class RotateTowards : GOAction
     {
-        /// <value>Input GameObject of the target Parameter</value>
+        /// <value>Property <c>Target</c> represents the GameObject of the target.</value>
         [InParam("Target")]
         [Help("GameObject of the target")]
         public GameObject Target { get; set; }
 
-        /// <value>Transform of the target.</value>
+        /// <value>Property <c>_targetTransform</c> represents the Transform of the target.</value>
         private Transform _targetTransform;
 
-        /// <summary>Start Method of RotateTowards.</summary>
+        /// <summary>
+        /// Method <c>OnStart</c> is called at the beginning of the task execution.
+        /// </summary>
         /// <remarks>Check if the target GameObject is null.</remarks>
         public override void OnStart()
         {
             if (Target == null)
             {
-                Debug.LogError("The GameObject is null", gameObject);
+                Debug.LogError("The target is null", gameObject);
                 return;
             }
             _targetTransform = Target.transform;
         }
 
-        /// <summary>Update Method of RotateTowards.</summary>
+        /// <summary>
+        /// Method <c>OnUpdate</c> is called on every iteration of the task execution.
+        /// </summary>
         /// <remarks>Rotate the Gameobject so that it points to the target GameObject position.</remarks>
         public override TaskStatus OnUpdate()
         {
@@ -44,7 +48,9 @@ namespace BBUnity.Actions
             return TaskStatus.RUNNING;
         }
         
-        /// <summary>Abort Method of RotateTowards.</summary>
+        /// <summary>
+        /// Method <c>OnAbort</c> is called when the task is aborted.
+        /// </summary>
         /// <remarks>Complete the task.</remarks>
         public override void OnAbort()
         {
