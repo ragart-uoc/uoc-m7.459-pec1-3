@@ -10,7 +10,8 @@ namespace M7459.Entities
         {
             SomethingFound,
             PursuitStarted,
-            PursuitEnded
+            PursuitEnded,
+            ZenMovementStarted
         }
     }
 }

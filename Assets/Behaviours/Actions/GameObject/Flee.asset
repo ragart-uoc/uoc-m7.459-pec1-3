@@ -48,27 +48,27 @@ MonoBehaviour:
     <nodes>\r\n          <SequenceNode id=\"19\" />\r\n          <ActionNode id=\"7\"
     />\r\n          <ActionNode id=\"20\" />\r\n          <ActionNode id=\"21\" />\r\n       
     </nodes>\r\n      </_nodes>\r\n    </BehaviorTree>\r\n    <SequenceNode id=\"19\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"616 43\"
-    name=\"Sequence\" description=\"Executes all its children in sequence until all
-    of them are successful\" cardinality=\"-1\" hasParent=\"False\">\r\n         
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"814.2443
+    242\" name=\"Sequence\" description=\"Executes all its children in sequence until
+    all of them are successful\" cardinality=\"-1\" hasParent=\"False\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"19\" />\r\n       
     </data>\r\n      </_data>\r\n    </SequenceNode>\r\n    <ActionNode id=\"20\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"262 164\"
-    name=\"M7459/Animation/SetAnimatorFloat\" description=\"Sets a float parameter
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"460.2443
+    363\" name=\"M7459/Animation/SetAnimatorFloat\" description=\"Sets a float parameter
     on an animator variable\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"20\" />\r\n         
     <SequenceNode id=\"19\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"7\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"522.064 167.9445\" name=\"Navigation/MoveAwayFromGameObject\" description=\"Moves
+    position=\"720.3083 366.9445\" name=\"Navigation/MoveAwayFromGameObject\" description=\"Moves
     the GameObject away from a given target by using a NavMeshAgent\" cardinality=\"0\"
     hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
     id=\"7\" />\r\n          <SequenceNode id=\"19\" />\r\n        </data>\r\n     
     </_data>\r\n    </ActionNode>\r\n    <ActionNode id=\"21\">\r\n      <_data>\r\n       
-    <data breakpoint=\"0\" selected=\"True\" position=\"879 174\" name=\"M7459/Animation/SetAnimatorFloat\"
+    <data breakpoint=\"0\" selected=\"False\" position=\"1077.244 373\" name=\"M7459/Animation/SetAnimatorFloat\"
     description=\"Sets a float parameter on an animator variable\" cardinality=\"0\"
     hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
     id=\"21\" />\r\n          <SequenceNode id=\"19\" />\r\n        </data>\r\n     
     </_data>\r\n    </ActionNode>\r\n  </editorInfo>\r\n</BehaviorBricks>"
-  zoom: 1
+  zoom: 0.5
   subslist: []
   _guid: 4baec8f855fd668479829c6bbf7a3e3f

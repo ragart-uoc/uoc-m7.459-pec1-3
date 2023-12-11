@@ -45,7 +45,7 @@ namespace BBCore.Conditions
         /// </summary>
         public override bool Check()
         {
-            return false;
+            return true;
         }
         
         /// <summary>

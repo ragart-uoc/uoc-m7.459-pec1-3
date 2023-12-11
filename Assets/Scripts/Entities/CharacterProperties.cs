@@ -10,7 +10,10 @@ namespace M7459.Entities
         {
             Elder,
             Runner,
-            PathRunner
+            PathRunner,
+            ZenMaster,
+            ZenPerson,
+            ZenDummy
         }
         
         /// <value>Property <c>States</c> represents the states of characters.</value>

@@ -137,6 +137,9 @@ namespace M7459.Entities
             _characterTypes.Add(CharacterProperties.Types.Elder, new Elder(this));
             _characterTypes.Add(CharacterProperties.Types.Runner, new Runner(this));
             _characterTypes.Add(CharacterProperties.Types.PathRunner, new PathRunner(this));
+            _characterTypes.Add(CharacterProperties.Types.ZenMaster, new ZenMaster(this));
+            _characterTypes.Add(CharacterProperties.Types.ZenPerson, new ZenPerson(this));
+            _characterTypes.Add(CharacterProperties.Types.ZenDummy, new ZenDummy(this));
             
             // Get the character states
             CharacterStates.Add(CharacterProperties.States.Idle, new Idle(this));

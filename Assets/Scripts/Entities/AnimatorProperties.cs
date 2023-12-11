@@ -11,5 +11,14 @@ namespace M7459.Entities
             SittingFinished,
             StandingUpFinished
         }
+        
+        /// <value>Property <c>Animations</c> represents the animations of the animator.</value>
+        public enum Animations
+        {
+            AirSquad = 1,
+            CropJump = 2,
+            JumpingJack = 3,
+            Pistol = 4
+        }
     }
 }
