@@ -47,5 +47,8 @@ namespace M7459.Entities
         
         /// <value>Property <c>locationList</c> represents the location list.</value>
         public Transform[] locationList;
+        
+        /// <value>Property <c>instancesContainer</c> represents the instances container.</value>
+        public GameObject instancesContainer;
     }
 }

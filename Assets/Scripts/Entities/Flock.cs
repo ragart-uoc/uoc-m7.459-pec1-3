@@ -1,4 +1,5 @@
 using UnityEngine;
+using M7459.Managers;
 
 namespace M7459.Entities
 {
@@ -7,6 +8,9 @@ namespace M7459.Entities
     /// </summary>
     public class Flock : MonoBehaviour
     {
+        /// <value>Property <c>_hive</c> represents the hive that the flock belongs to.</value>
+        private FlockManager _hive;
+        
         /// <value>Property <c>unitPrefab</c> represents the prefab of the unit that will be spawned.</value>
         [Header("Spawn Settings")]
         [SerializeField]
@@ -115,6 +119,14 @@ namespace M7459.Entities
                 unit.MoveUnit();
             }
         }
+        
+        /// <summary>
+        /// Method <c>AssignHive</c> assigns the hive to the flock.
+        /// </summary>
+        /// <param name="hive">The hive to assign.</param>
+        public void AssignHive(FlockManager hive) {
+            _hive = hive;
+        }
 
         /// <summary>
         /// Method <c>SpawnUnits</c> spawns the units in the flock.
@@ -130,6 +142,8 @@ namespace M7459.Entities
                 Units[i] = Instantiate(unitPrefab, spawnPosition, spawnRotation).GetComponent<FlockUnit>();
                 Units[i].AssignFlock(this);
                 Units[i].InitializeSpeed(Random.Range(minSpeed, maxSpeed));
+                // Set the parent of the unit to the instances container.
+                Units[i].transform.SetParent(_hive.instancesContainer.transform);
             }
         }
 

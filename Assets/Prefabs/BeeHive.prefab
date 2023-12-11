@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a7fd9c8c6dfd054c986eafcd9de29e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flockPrefab: {fileID: 7702860150935761651, guid: 5dc62d5d38c419f499263e4c0cb5dbac, type: 3}
+  size: 1
+  spawnBounds: {x: 0.5, y: 0.2, z: 0.5}
 --- !u!33 &3603597859923924899
 MeshFilter:
   m_ObjectHideFlags: 0

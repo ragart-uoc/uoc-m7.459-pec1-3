@@ -100,6 +100,8 @@ namespace M7459.Managers
                 instance.maxSpeed = characterStructs[typeIndex].maxSpeed;
                 instance.minSpeed = characterStructs[typeIndex].minSpeed;
                 instance.canStart = true;
+            // Add the instance to the container
+            instance.transform.SetParent(characterStructs[typeIndex].instancesContainer.transform);
         }
 
         /// <summary>
