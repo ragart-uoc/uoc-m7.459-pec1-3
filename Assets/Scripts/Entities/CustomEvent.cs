@@ -13,5 +13,11 @@ namespace M7459.Entities
         
         /// <value>Property <c>Raiser</c> represents the raiser of the custom event.</value>
         public GameObject Raiser { get; set; }
+        
+        /// <value>Property <c>Target</c> represents the target of the custom event.</value>
+        public GameObject Target { get; set; }
+        
+        /// <value>Property <c>Value</c> represents the value of the custom event.</value>
+        public float Value { get; set; }
     }
 }

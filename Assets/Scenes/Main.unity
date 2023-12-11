@@ -13457,8 +13457,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
+      propertyPath: blackboard.floatParams.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
       propertyPath: blackboard.objectParams.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
+      propertyPath: blackboard.floatParams.Array.data[0]
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
       propertyPath: blackboard.objectParams.Array.data[0]
@@ -13469,8 +13477,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1677091152}
     - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
+      propertyPath: blackboard.floatParamsNames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
       propertyPath: blackboard.objectParamsNames.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
+      propertyPath: blackboard.floatParamsNames.Array.data[0]
+      value: CloseDistance
       objectReference: {fileID: 0}
     - target: {fileID: 5056373831928996282, guid: 2a22a28be45796e4b87227c735235f85, type: 3}
       propertyPath: blackboard.objectParamsNames.Array.data[1]

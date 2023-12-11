@@ -4,6 +4,7 @@ using Pada1.BBCore.Tasks;
 using Pada1.BBCore.Framework;
 using M7459.Entities;
 using M7459.Managers;
+using UnityEngine;
 
 namespace BBCore.Conditions
 {
@@ -23,6 +24,21 @@ namespace BBCore.Conditions
         [InParam("Event type")]
         [Help("Custom event type to be checked")]
         public CustomEventProperties.Types CustomEventType { get; set; }
+        
+        /// <value>Property <c>Raiser</c> represents the raiser of the event.</value>
+        [OutParam("Raiser")]
+        [Help("The raiser of the event")]
+        public GameObject Raiser { get; set; }
+        
+        /// <value>Property <c>Target</c> represents the target of the event.</value>
+        [OutParam("Target")]
+        [Help("The target of the event")]
+        public GameObject Target { get; set; }
+        
+        /// <value>Property <c>Value</c> represents the value of the event.</value>
+        [OutParam("Value")]
+        [Help("The value of the event")]
+        public float Value { get; set; }
         
         /// <summary>
         /// Method <c>Check</c> checks whether the condition is fulfilled.
@@ -60,6 +76,9 @@ namespace BBCore.Conditions
             var args = e as CustomEventArgs;
             if (args!.Type != CustomEventType)
                 return;
+            Raiser = args.Raiser;
+            Target = args.Target;
+            Value = args.Value;
             EventManager.OnEventRaised -= OnEventRaised;
             EndMonitorWithSuccess();
         }

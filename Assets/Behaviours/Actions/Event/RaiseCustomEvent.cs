@@ -23,6 +23,16 @@ namespace BBUnity.Actions
         [Help("Custom event type to raise")]
         public CustomEventProperties.Types CustomEventType { get; set; }
         
+        /// <value>Property <c>Target</c> represents the target of the event.</value>
+        [InParam("Target")]
+        [Help("The target of the event")]
+        public GameObject Target { get; set; }
+        
+        /// <value>Property <c>Value</c> represents the value of the event.</value>
+        [InParam("Value")]
+        [Help("The value of the event")]
+        public float Value { get; set; }
+        
         /// <summary>
         /// Method <c>OnStart</c> is called at the beginning of the task execution.
         /// </summary>
@@ -38,7 +48,9 @@ namespace BBUnity.Actions
             var args = new CustomEventArgs
             {
                 Type = CustomEventType,
-                Raiser = gameObject
+                Raiser = gameObject,
+                Target = Target,
+                Value = Value
             };
             EventManager.SendMessage("TriggerEvent", args);
         }
