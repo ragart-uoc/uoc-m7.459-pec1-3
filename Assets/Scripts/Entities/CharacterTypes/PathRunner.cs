@@ -47,6 +47,25 @@ namespace M7459.Entities.CharacterTypes
             // Update the state
             _character.CurrentState.UpdateState();
         }
+        
+        /// <summary>
+        /// Method <c>Follow</c> invokes the type Follow method.
+        /// </summary>
+        public void Follow()
+        {
+            // PathRunners don't follow
+        }
+
+        /// <summary>
+        /// Method <c>Idle</c> invokes the type Idle method.
+        /// </summary>
+        public void Idle()
+        {
+            if (_character.CurrentState == _character.CharacterStates[CharacterProperties.States.Idle])
+                return;
+            _character.CurrentState = _character.CharacterStates[CharacterProperties.States.Idle];
+            _character.CurrentState.StartState();
+        }
 
         /// <summary>
         /// Method <c>Rest</c> invokes the type Rest method.

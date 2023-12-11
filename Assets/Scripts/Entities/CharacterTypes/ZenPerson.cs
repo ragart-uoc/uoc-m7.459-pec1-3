@@ -29,7 +29,7 @@ namespace M7459.Entities.CharacterTypes
             _character.animator.Update(0f);
             
             // Start the state
-            _character.CurrentType.StartType();
+            _character.CurrentType.Follow();
         }
 
         /// <summary>
@@ -42,6 +42,28 @@ namespace M7459.Entities.CharacterTypes
             
             // Update the state
             _character.CurrentState.UpdateState();
+        }
+        
+        /// <summary>
+        /// Method <c>Follow</c> invokes the type Follow method.
+        /// </summary>
+        public void Follow()
+        {
+            if (_character.CurrentState == _character.CharacterStates[CharacterProperties.States.Following])
+                return;
+            _character.CurrentState = _character.CharacterStates[CharacterProperties.States.Following];
+            _character.CurrentState.StartState();
+        }
+
+        /// <summary>
+        /// Method <c>Idle</c> invokes the type Idle method.
+        /// </summary>
+        public void Idle()
+        {
+            if (_character.CurrentState == _character.CharacterStates[CharacterProperties.States.Idle])
+                return;
+            _character.CurrentState = _character.CharacterStates[CharacterProperties.States.Idle];
+            _character.CurrentState.StartState();
         }
 
         /// <summary>

@@ -16,6 +16,16 @@ namespace M7459.Entities.CharacterTypes
         /// Method <c>UpdateType</c> invokes the type Update method.
         /// </summary>
         void UpdateType();
+
+        /// <summary>
+        /// Method <c>Follow</c> invokes the type Follow method.
+        /// </summary>
+        void Follow();
+        
+        /// <summary>
+        /// Method <c>Idle</c> invokes the type Idle method.
+        /// </summary>
+        void Idle();
         
         /// <summary>
         /// Method <c>Rest</c> invokes the type Rest method.

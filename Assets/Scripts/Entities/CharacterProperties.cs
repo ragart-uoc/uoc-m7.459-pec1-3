@@ -11,15 +11,16 @@ namespace M7459.Entities
             Elder,
             Runner,
             PathRunner,
+            ZenDummy,
             ZenMaster,
-            ZenPerson,
-            ZenDummy
+            ZenPerson
         }
         
         /// <value>Property <c>States</c> represents the states of characters.</value>
         public enum States
         {
             Idle,
+            Following,
             Resting,
             Patrolling,
             PathPatrolling,

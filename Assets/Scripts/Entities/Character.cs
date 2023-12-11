@@ -55,7 +55,6 @@ namespace M7459.Entities
             private bool _started;
             
             /// <value>Property <c>canStart</c> represents if the character can start.</value>
-            [HideInInspector]
             public bool canStart;
 
             /// <value>Property <c>wanderRadius</c> represents the wander radius.</value>
@@ -85,6 +84,12 @@ namespace M7459.Entities
             /// <value>Property <c>patrolDirection</c> represents the patrol direction.</value>
             [HideInInspector]
             public bool patrolDirection;
+            
+            /// <value>Property <c>followTarget</c> represents the character follow target.</value>
+            public GameObject followTarget;
+            
+            /// <value>Property <c>followOffset</c> represents the character follow offset.</value>
+            public Vector3 followOffset;
         
         #endregion
         
@@ -137,11 +142,12 @@ namespace M7459.Entities
             _characterTypes.Add(CharacterProperties.Types.Elder, new Elder(this));
             _characterTypes.Add(CharacterProperties.Types.Runner, new Runner(this));
             _characterTypes.Add(CharacterProperties.Types.PathRunner, new PathRunner(this));
+            _characterTypes.Add(CharacterProperties.Types.ZenDummy, new ZenDummy(this));
             _characterTypes.Add(CharacterProperties.Types.ZenMaster, new ZenMaster(this));
             _characterTypes.Add(CharacterProperties.Types.ZenPerson, new ZenPerson(this));
-            _characterTypes.Add(CharacterProperties.Types.ZenDummy, new ZenDummy(this));
-            
+
             // Get the character states
+            CharacterStates.Add(CharacterProperties.States.Following, new Following(this));
             CharacterStates.Add(CharacterProperties.States.Idle, new Idle(this));
             CharacterStates.Add(CharacterProperties.States.Resting, new Resting(this));
             CharacterStates.Add(CharacterProperties.States.Patrolling, new Patrolling(this));
