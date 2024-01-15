@@ -2,8 +2,9 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace M7459.ML_Agents.Samples.RollerBall.Scripts
+namespace M7459.ML_Agents.Examples.RollerBall.Scripts
 {
     /// <summary>
     /// Class <c>RollerBall</c> is a class that represents the RollerBall agent.
@@ -14,7 +15,16 @@ namespace M7459.ML_Agents.Samples.RollerBall.Scripts
         private Rigidbody _rigidBody;
         
         /// <summary>Property <c>Target</c> represents the target transform.</summary>
-        public Transform target;
+        public Transform targetTransform;
+        
+        /// <summary>Property <c>floorMeshRenderer</c> represents the floor mesh renderer.</summary>
+        public MeshRenderer floorMeshRenderer;
+        
+        /// <summary>Property <c>failMaterial</c> represents the fail material.</summary>
+        public Material failMaterial;
+        
+        /// <summary>Property <c>winMaterial</c> represents the win material.</summary>
+        public Material winMaterial;
 
         /// <summary>Property <c>forceMultiplier</c> represents the force multiplier.</summary>
         public float forceMultiplier = 10;
@@ -24,6 +34,9 @@ namespace M7459.ML_Agents.Samples.RollerBall.Scripts
 
         /// <summary>Property <c>verticalInput</c> represents the vertical input.</summary>
         private float _verticalInput;
+        
+        /// <summary>Property <c>_lastEpisodeWin</c> represents whether the last episode was a win.</summary>
+        private bool _lastEpisodeWin;
         
         /// <summary>
         /// Method <c>Start</c> is called on the frame when a script is enabled just before any of the Update methods is called the first time.
@@ -38,13 +51,13 @@ namespace M7459.ML_Agents.Samples.RollerBall.Scripts
         /// </summary>
         public override void OnEpisodeBegin()
         {
-            if (transform.localPosition.y < 0)
+            if (_lastEpisodeWin == false)
             {
                 _rigidBody.angularVelocity = Vector3.zero;
                 _rigidBody.velocity = Vector3.zero;
                 transform.localPosition = new Vector3(0, 0.5f, 0);
             }
-            target.localPosition = new Vector3(Random.value * 8 - 4, 0.5f, Random.value * 8 - 4);
+            targetTransform.localPosition = new Vector3(Random.value * 8 - 4, 0.5f, Random.value * 8 - 4);
         }
         
         /// <summary>
@@ -53,8 +66,11 @@ namespace M7459.ML_Agents.Samples.RollerBall.Scripts
         /// <param name="sensor">The vector observations for the agent.</param>
         public override void CollectObservations(VectorSensor sensor)
         {
-            sensor.AddObservation(target.localPosition);
+            // Agent position
+            sensor.AddObservation(targetTransform.localPosition);
+            // Target position
             sensor.AddObservation(transform.localPosition);
+            // Agent velocity
             sensor.AddObservation(_rigidBody.velocity.x);
             sensor.AddObservation(_rigidBody.velocity.z);
         }
@@ -65,22 +81,10 @@ namespace M7459.ML_Agents.Samples.RollerBall.Scripts
         /// <param name="actions">An array containing the action vector</param>
         public override void OnActionReceived(ActionBuffers actions)
         {
-            var controlSignal = Vector3.zero;
-            controlSignal.x = actions.ContinuousActions[0];
-            controlSignal.z = actions.ContinuousActions[1];
-            _rigidBody.AddForce(controlSignal * forceMultiplier);
-            
-            var distanceToTarget = Vector3.Distance(transform.localPosition, target.localPosition);
-            if (distanceToTarget < 1.42f)
-            {
-                SetReward(1.0f);
-                EndEpisode();
-            }
-            
-            if (transform.localPosition.y < 0)
-            {
-                EndEpisode();
-            }
+            var direction = Vector3.zero;
+            direction.x = actions.ContinuousActions[0];
+            direction.z = actions.ContinuousActions[1];
+            _rigidBody.AddForce(direction * forceMultiplier);
         }
         
         /// <summary>
@@ -103,6 +107,48 @@ namespace M7459.ML_Agents.Samples.RollerBall.Scripts
             var movement = context.ReadValue<Vector2>();
             _horizontalInput = movement.x;
             _verticalInput = movement.y;
+        }
+        
+        /// <summary>
+        /// Method <c>OnTriggerEnter</c> is called when the Collider other enters the trigger.
+        /// </summary>
+        /// <param name="col">The other Collider involved in this event.</param>
+        private void OnTriggerEnter(Collider col)
+        {
+            if (col.CompareTag("MLTarget"))
+            {
+                _lastEpisodeWin = true;
+                floorMeshRenderer.material = winMaterial;
+                SetReward(+1.0f);
+                EndEpisode();
+            }
+
+            if (col.CompareTag("MLDeathZone"))
+            {
+                _lastEpisodeWin = false;
+                floorMeshRenderer.material = failMaterial;
+                SetReward(-0.25f);
+                EndEpisode();
+            }
+        }
+
+        private void OnTriggerStay(Collider col)
+        {
+            if (col.CompareTag("MLTarget"))
+            {
+                _lastEpisodeWin = true;
+                floorMeshRenderer.material = winMaterial;
+                SetReward(+1.0f);
+                EndEpisode();
+            }
+
+            if (col.CompareTag("MLDeathZone"))
+            {
+                _lastEpisodeWin = false;
+                floorMeshRenderer.material = failMaterial;
+                SetReward(-0.25f);
+                EndEpisode();
+            }
         }
     }
 }

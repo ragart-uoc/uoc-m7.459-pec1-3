@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 904683046050773653}
   m_Layer: 0
   m_Name: RollerBall
-  m_TagString: Untagged
+  m_TagString: MLAgent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 01763a1c279a5cd4d8f897f6b6cdbae5, type: 2}
+  - {fileID: 2100000, guid: 3fd8700d392a9bc408e2a9b94aff62a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,7 +153,10 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  target: {fileID: 0}
+  targetTransform: {fileID: 0}
+  floorMeshRenderer: {fileID: 0}
+  failMaterial: {fileID: 2100000, guid: b8a9828272e1da74eae9d7bc22e66c41, type: 2}
+  winMaterial: {fileID: 2100000, guid: 52e719f289cb5084c857109bb9edb634, type: 2}
   forceMultiplier: 10
 --- !u!114 &3579992978688375568
 MonoBehaviour:
@@ -192,7 +195,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 7f5c2671a6d410d41aafea3f8a2c91b7, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 63821ff16423bec4fa8dce5a50a8d051, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: RollerBall

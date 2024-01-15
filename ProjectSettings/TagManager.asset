@@ -8,6 +8,9 @@ TagManager:
   - Elder
   - RestArea
   - Zen
+  - MLTarget
+  - MLAgent
+  - MLDeathZone
   layers:
   - Default
   - TransparentFX

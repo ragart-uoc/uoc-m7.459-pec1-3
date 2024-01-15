@@ -3,8 +3,8 @@ behaviors:
   RollerBall:
     trainer_type: ppo
     hyperparameters:
-      batch_size: 10
-      buffer_size: 100
+      batch_size: 512
+      buffer_size: 5120
       learning_rate: 0.0003
       beta: 0.0005
       epsilon: 0.2
@@ -69,7 +69,7 @@ checkpoint_settings:
   initialize_from: null
   load_model: false
   resume: false
-  force: true
+  force: false
   train_model: false
   inference: false
   results_dir: results
