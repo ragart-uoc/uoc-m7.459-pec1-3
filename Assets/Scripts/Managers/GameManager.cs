@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using M7459.Entities;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 namespace M7459.Managers
@@ -71,8 +72,10 @@ namespace M7459.Managers
         private Character SpawnCharacter(GameObject prefab, Transform[] locationList)
         {
             var randomLocationKey = Random.Range(0, locationList.Length);
+            var location = locationList[randomLocationKey];
+            NavMesh.SamplePosition(location.position, out var closestNavMeshPosition, 1f, NavMesh.AllAreas);
             var instance = Instantiate(prefab, 
-                locationList[randomLocationKey].position,
+                closestNavMeshPosition.position,
                 Quaternion.identity);
             var instanceCharacter = instance.GetComponent<Character>();
                 instanceCharacter.startingLocation = randomLocationKey;
@@ -87,7 +90,8 @@ namespace M7459.Managers
         private void AddCharacterFromStruct(int typeIndex)
         {
             // Check if the button should be disabled
-            if (characterStructs[typeIndex].instances == characterStructs[typeIndex].maxInstances)
+            if (characterStructs[typeIndex].instances == characterStructs[typeIndex].maxInstances
+                    && characterStructs[typeIndex].addButton != null)
                 characterStructs[typeIndex].addButton.interactable = false;
 
             // Spawn the character

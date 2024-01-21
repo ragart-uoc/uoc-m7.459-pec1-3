@@ -1,0 +1,47 @@
+{
+    "FoxFrog": {
+        "checkpoints": [
+            {
+                "steps": 499999,
+                "file_path": "results/foxfrog004/FoxFrog/FoxFrog-499999.onnx",
+                "reward": 0.8638484457372382,
+                "creation_time": 1705811466.0944724,
+                "auxillary_file_paths": [
+                    "results/foxfrog004/FoxFrog/FoxFrog-499999.pt"
+                ]
+            },
+            {
+                "steps": 999981,
+                "file_path": "results/foxfrog004/FoxFrog/FoxFrog-999981.onnx",
+                "reward": 0.873925321700075,
+                "creation_time": 1705812408.0568473,
+                "auxillary_file_paths": [
+                    "results/foxfrog004/FoxFrog/FoxFrog-999981.pt"
+                ]
+            },
+            {
+                "steps": 1000030,
+                "file_path": "results/foxfrog004/FoxFrog/FoxFrog-1000030.onnx",
+                "reward": 0.874416357550606,
+                "creation_time": 1705812408.1794019,
+                "auxillary_file_paths": [
+                    "results/foxfrog004/FoxFrog/FoxFrog-1000030.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000030,
+            "file_path": "results/foxfrog004/FoxFrog.onnx",
+            "reward": 0.874416357550606,
+            "creation_time": 1705812408.1794019,
+            "auxillary_file_paths": [
+                "results/foxfrog004/FoxFrog/FoxFrog-1000030.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.1.2+cu121"
+    }
+}

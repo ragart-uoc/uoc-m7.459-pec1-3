@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4731639755874768228}
   - component: {fileID: 5021772528930996456}
   - component: {fileID: -7177598358160538025}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lamp
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

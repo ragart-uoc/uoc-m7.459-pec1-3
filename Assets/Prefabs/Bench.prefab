@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7240171262572143353}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnterPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,9 +47,9 @@ GameObject:
   - component: {fileID: 2151416641572383092}
   - component: {fileID: 6031885493295714940}
   - component: {fileID: 8817500038135522663}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bench
-  m_TagString: RestArea
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,7 +232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4904464054872378097}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ExitPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -58,31 +58,24 @@ namespace M7459.Entities
             public bool canStart;
 
             /// <value>Property <c>wanderRadius</c> represents the wander radius.</value>
-            [HideInInspector]
             public float wanderRadius;
             
             /// <value>Property <c>wanderOffset</c> represents the wander offset.</value>
-            [HideInInspector]
             public float wanderOffset;
             
             /// <value>Property <c>wanderStoppingDistance</c> represents the wander stopping distance.</value>
-            [HideInInspector]
             public float wanderStoppingDistance;
             
             /// <value>Property <c>restingTime</c> represents the resting time.</value>
-            [HideInInspector]
             public float restingTime;
 
             /// <value>Property <c>minSpeed</c> represents the minimum speed.</value>
-            [HideInInspector]
             public float minSpeed;
 
             /// <value>Property <c>maxSpeed</c> represents the maximum speed.</value>
-            [HideInInspector]
             public float maxSpeed;
             
             /// <value>Property <c>patrolDirection</c> represents the patrol direction.</value>
-            [HideInInspector]
             public bool patrolDirection;
             
             /// <value>Property <c>followTarget</c> represents the character follow target.</value>
@@ -96,15 +89,12 @@ namespace M7459.Entities
         #region Navigation
 
             /// <value>Property <c>locationList</c> represents the character location list.</value>
-            [HideInInspector]
             public Transform[] locationList;
 
             /// <value>Property <c>startingLocation</c> represents the character starting location.</value>
-            [HideInInspector]
             public int startingLocation;
         
             /// <value>Property <c>nextLocation</c> represents the character next location.</value>
-            [HideInInspector]
             public int nextLocation;
             
             /// <value>Property <c>restAreaEnterPosition</c> represents the character rest area enter position.</value>

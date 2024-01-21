@@ -4,13 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Runner
-  - Elder
-  - RestArea
-  - Zen
   - MLTarget
   - MLAgent
   - MLDeathZone
+  - Character
+  - Prop
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -19,8 +18,8 @@ TagManager:
   - Water
   - UI
   - Characters
-  - Obstacle
-  - 
+  - Terrain
+  - Obstacles
   - 
   - 
   - 

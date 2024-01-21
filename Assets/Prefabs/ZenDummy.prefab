@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5091010580533508368}
   m_Layer: 6
   m_Name: ZenDummy
-  m_TagString: Zen
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,6 +61,8 @@ MonoBehaviour:
   minSpeed: 0
   maxSpeed: 0
   patrolDirection: 0
+  followTarget: {fileID: 0}
+  followOffset: {x: 0, y: 0, z: 0}
   locationList: []
   startingLocation: 0
   nextLocation: 0
@@ -68,7 +70,6 @@ MonoBehaviour:
   restAreaExitPosition: {fileID: 0}
   pathCreator: {fileID: 0}
   endOfPathInstruction: 0
-  followTarget: {fileID: 0}
 --- !u!95 &8733430078534459914
 Animator:
   serializedVersion: 5

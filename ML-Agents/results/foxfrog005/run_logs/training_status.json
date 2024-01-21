@@ -1,0 +1,65 @@
+{
+    "FoxFrog": {
+        "checkpoints": [
+            {
+                "steps": 499986,
+                "file_path": "results/foxfrog005/FoxFrog/FoxFrog-499986.onnx",
+                "reward": 0.8077370369875873,
+                "creation_time": 1705815394.6766307,
+                "auxillary_file_paths": [
+                    "results/foxfrog005/FoxFrog/FoxFrog-499986.pt"
+                ]
+            },
+            {
+                "steps": 999990,
+                "file_path": "results/foxfrog005/FoxFrog/FoxFrog-999990.onnx",
+                "reward": 0.8000374976545572,
+                "creation_time": 1705816223.7618282,
+                "auxillary_file_paths": [
+                    "results/foxfrog005/FoxFrog/FoxFrog-999990.pt"
+                ]
+            },
+            {
+                "steps": 1499980,
+                "file_path": "results/foxfrog005/FoxFrog/FoxFrog-1499980.onnx",
+                "reward": 0.844704824274984,
+                "creation_time": 1705817057.3552272,
+                "auxillary_file_paths": [
+                    "results/foxfrog005/FoxFrog/FoxFrog-1499980.pt"
+                ]
+            },
+            {
+                "steps": 1999996,
+                "file_path": "results/foxfrog005/FoxFrog/FoxFrog-1999996.onnx",
+                "reward": 0.9048382564731267,
+                "creation_time": 1705817903.0614524,
+                "auxillary_file_paths": [
+                    "results/foxfrog005/FoxFrog/FoxFrog-1999996.pt"
+                ]
+            },
+            {
+                "steps": 2000028,
+                "file_path": "results/foxfrog005/FoxFrog/FoxFrog-2000028.onnx",
+                "reward": 0.9051145252763716,
+                "creation_time": 1705817903.3221612,
+                "auxillary_file_paths": [
+                    "results/foxfrog005/FoxFrog/FoxFrog-2000028.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2000028,
+            "file_path": "results/foxfrog005/FoxFrog.onnx",
+            "reward": 0.9051145252763716,
+            "creation_time": 1705817903.3221612,
+            "auxillary_file_paths": [
+                "results/foxfrog005/FoxFrog/FoxFrog-2000028.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.1.2+cu121"
+    }
+}

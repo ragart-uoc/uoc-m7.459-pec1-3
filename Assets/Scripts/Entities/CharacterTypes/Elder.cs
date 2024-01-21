@@ -114,9 +114,9 @@ namespace M7459.Entities.CharacterTypes
         public void HandleTriggers(CollisionProperties.Types type, Collider col, string tag)
         {
             // Check if the collider is a rest area
-            if (!col.transform.CompareTag("RestArea"))
-                return;
             var restArea = col.gameObject.GetComponent<RestArea>();
+            if (!restArea)
+                return;
             
             // Check if the rest area is occupied
             if (restArea.isOccupied && restArea.occupant != _character.gameObject)

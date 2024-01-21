@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3603597859923924899}
   - component: {fileID: 1409905819205488983}
   - component: {fileID: 3231271018830421712}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BeeHive
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -50,6 +50,7 @@ MonoBehaviour:
   flockPrefab: {fileID: 7702860150935761651, guid: 5dc62d5d38c419f499263e4c0cb5dbac, type: 3}
   size: 1
   spawnBounds: {x: 0.5, y: 0.2, z: 0.5}
+  instancesContainer: {fileID: 0}
 --- !u!33 &3603597859923924899
 MeshFilter:
   m_ObjectHideFlags: 0
