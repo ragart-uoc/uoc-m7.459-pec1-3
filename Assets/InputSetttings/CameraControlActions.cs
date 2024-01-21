@@ -44,6 +44,15 @@ public partial class @CameraControlActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FocusCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""3540a2c0-eecb-4c08-bb62-9cf37377728d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -167,6 +176,17 @@ public partial class @CameraControlActions: IInputActionCollection2, IDisposable
                     ""action"": ""ZoomCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a150370a-6e64-493b-9e69-38a73c64e219"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FocusCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -177,6 +197,7 @@ public partial class @CameraControlActions: IInputActionCollection2, IDisposable
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Movement = m_Camera.FindAction("Movement", throwIfNotFound: true);
         m_Camera_ZoomCamera = m_Camera.FindAction("ZoomCamera", throwIfNotFound: true);
+        m_Camera_FocusCamera = m_Camera.FindAction("FocusCamera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -240,12 +261,14 @@ public partial class @CameraControlActions: IInputActionCollection2, IDisposable
     private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
     private readonly InputAction m_Camera_Movement;
     private readonly InputAction m_Camera_ZoomCamera;
+    private readonly InputAction m_Camera_FocusCamera;
     public struct CameraActions
     {
         private @CameraControlActions m_Wrapper;
         public CameraActions(@CameraControlActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Camera_Movement;
         public InputAction @ZoomCamera => m_Wrapper.m_Camera_ZoomCamera;
+        public InputAction @FocusCamera => m_Wrapper.m_Camera_FocusCamera;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -261,6 +284,9 @@ public partial class @CameraControlActions: IInputActionCollection2, IDisposable
             @ZoomCamera.started += instance.OnZoomCamera;
             @ZoomCamera.performed += instance.OnZoomCamera;
             @ZoomCamera.canceled += instance.OnZoomCamera;
+            @FocusCamera.started += instance.OnFocusCamera;
+            @FocusCamera.performed += instance.OnFocusCamera;
+            @FocusCamera.canceled += instance.OnFocusCamera;
         }
 
         private void UnregisterCallbacks(ICameraActions instance)
@@ -271,6 +297,9 @@ public partial class @CameraControlActions: IInputActionCollection2, IDisposable
             @ZoomCamera.started -= instance.OnZoomCamera;
             @ZoomCamera.performed -= instance.OnZoomCamera;
             @ZoomCamera.canceled -= instance.OnZoomCamera;
+            @FocusCamera.started -= instance.OnFocusCamera;
+            @FocusCamera.performed -= instance.OnFocusCamera;
+            @FocusCamera.canceled -= instance.OnFocusCamera;
         }
 
         public void RemoveCallbacks(ICameraActions instance)
@@ -292,5 +321,6 @@ public partial class @CameraControlActions: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnZoomCamera(InputAction.CallbackContext context);
+        void OnFocusCamera(InputAction.CallbackContext context);
     }
 }

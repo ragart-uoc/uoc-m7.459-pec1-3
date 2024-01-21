@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,9 @@ namespace M7459.Controllers
             
             /// <value>Property <c>_cameraTransform</c> represents the camera transform.</value>
             private Transform _cameraTransform;
+            
+            /// <value>Property <c>_virtualCamera</c> represents the virtual camera.</value>
+            private CinemachineVirtualCamera _virtualCamera;
         
         #endregion
         
@@ -98,6 +102,13 @@ namespace M7459.Controllers
         
         #endregion
         
+        #region Focus
+        
+            /// <value>Property <c>focus</c> represents the focus of the camera.</value>
+            private bool _focusActive;
+            
+        #endregion
+        
         #region Reference Values
         
             /// <value>Property <c>_targetPosition</c> represents the target position of the camera.</value>
@@ -117,6 +128,7 @@ namespace M7459.Controllers
             _cameraActions = new CameraControlActions();
             _camera ??= GetComponentInChildren<Camera>();
             _cameraTransform ??= _camera.transform;
+            _virtualCamera ??= GetComponentInChildren<CinemachineVirtualCamera>();
         }
 
         /// <summary>
@@ -127,13 +139,16 @@ namespace M7459.Controllers
             // Set the initial value for the last position, the movement and the zoom height
             _lastPosition = transform.position;
             _movement = _cameraActions.Camera.Movement;
-            _zoomHeight = _camera.orthographicSize;
+            _zoomHeight = _virtualCamera.m_Lens.OrthographicSize;
             
             // Enable the camera actions
             _cameraActions.Enable();
             
             // Subscribe to the zoom event
             _cameraActions.Camera.ZoomCamera.performed += ZoomCamera;
+            
+            // Subscribe to the focus event
+            _cameraActions.Camera.FocusCamera.performed += _ => ToggleCameraFocus();
         }
 
         /// <summary>
@@ -153,6 +168,10 @@ namespace M7459.Controllers
         /// </summary>
         private void Update()
         {
+            // Check if the camera is focused
+            if (_focusActive)
+                return;
+
             // Get the keyboard movement
             GetKeyboardMovement();
             
@@ -250,7 +269,7 @@ namespace M7459.Controllers
             var value = -inputValue.ReadValue<Vector2>().y / 100f;
             if (Mathf.Abs(value) > 0.1f)
             {
-                _zoomHeight = Mathf.Clamp(_camera.orthographicSize + value * stepSize, minHeight, maxHeight);
+                _zoomHeight = Mathf.Clamp(_virtualCamera.m_Lens.OrthographicSize + value * stepSize, minHeight, maxHeight);
             }
         }
         
@@ -259,7 +278,7 @@ namespace M7459.Controllers
         /// </summary>
         private void UpdateCameraSize()
         {
-            _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, _zoomHeight, zoomDampening * Time.deltaTime);
+            _virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(_virtualCamera.m_Lens.OrthographicSize, _zoomHeight, zoomDampening * Time.deltaTime);
         }
         
         /// <summary>
@@ -285,6 +304,28 @@ namespace M7459.Controllers
             
             // Update the target position
             _targetPosition += moveDirection;
+        }
+        
+        /// <summary>
+        /// Method <c>ToggleCameraFocus</c> toggles the camera focus.
+        /// </summary>
+        private void ToggleCameraFocus() {
+            var cinemachineTargetGroup = _virtualCamera.GetComponent<CinemachineTargetGroup>();
+            if (cinemachineTargetGroup.isActiveAndEnabled)
+            {
+                _focusActive = false;
+                cinemachineTargetGroup.enabled = false;
+                _targetPosition = Vector3.zero;
+                _virtualCamera.transform.position = _targetPosition;
+                _zoomHeight = maxHeight;
+                _virtualCamera.m_Lens.OrthographicSize = _zoomHeight;
+            }
+            else
+            {
+                _focusActive = true;
+                cinemachineTargetGroup.enabled = true;
+                _virtualCamera.m_Lens.OrthographicSize = 6f;
+            }
         }
     }
 }
